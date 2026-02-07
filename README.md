@@ -9,9 +9,8 @@ Este robot en **PIX Studio v2.27.4** realiza un flujo que:
 1) **Descarga** (o reutiliza si ya existe) la respuesta del endpoint **Fake Store API** vía **HTTP GET** y la **guarda como respaldo** `.json`.  
 2) **Extrae** por transacción los campos requeridos (`id`, `title`, `price`, `category`, `description`).  
 3) **Inserta** en una **base de datos SQLite** (evitando duplicados por `id` y agregando `fecha_insercion`).  
-4) **Genera** un **reporte Excel** basado en una **Plantilla.xlsx** con:  
-   - **Hoja Productos**: todos los registros.  
-   - **Hoja Resumen**: **total de productos**, **precio promedio general**, **promedio por categoría** y **cantidad por categoría**.  
+4) **Genera** un **reporte Excel** con todos los registros.  
+   - **total de productos**, **precio promedio general**, **promedio por categoría** y **cantidad por categoría**.  
 
 
 ## 🗂 Estructura de carpetas 
