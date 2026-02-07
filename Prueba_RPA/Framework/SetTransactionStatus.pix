@@ -1,0 +1,862 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Script xmlns:i="http://www.w3.org/2001/XMLSchema-instance" z:Id="i1" xmlns:z="http://schemas.microsoft.com/2003/10/Serialization/" xmlns="http://schemas.datacontract.org/2004/07/BR.Logic">
+  <CompilationType>CSharp</CompilationType>
+  <Description>Новый скрипт без наполнения.</Description>
+  <Id>7d7ba1c3-539e-4543-9afe-84acf1df8e01</Id>
+  <Logic z:Id="i2" i:type="ExecutedStep">
+    <Childs>
+      <AbstractStep z:Id="i3" i:type="ExecutedStep">
+        <Childs />
+        <Id>216dd4c5-8d72-452a-b463-8ff4fdaa88d6</Id>
+        <Parent z:Ref="i2" />
+        <PropertyValues>
+          <PropertyValue z:Id="i4">
+            <PropertyName>Text</PropertyName>
+            <_dataType>Expression</_dataType>
+            <_expression>"Inicio con el estado de las transacciones."</_expression>
+            <_screenShotBase64 i:nil="true" />
+            <_value i:nil="true" />
+            <_xpathSettings xmlns:d7p1="http://schemas.datacontract.org/2004/07/BR.XPath" i:nil="true" />
+          </PropertyValue>
+        </PropertyValues>
+        <SelectedOptionId i:nil="true" />
+        <AutoCloseMode>None</AutoCloseMode>
+        <EnableStatus>true</EnableStatus>
+        <ExceptionHandlingMode>Default</ExceptionHandlingMode>
+        <RetryCount>-1</RetryCount>
+        <Text>Escriba el log " Inicio del estado de la transacción ".</Text>
+        <_activityFullName>BR.Core.Base.WriteLog</_activityFullName>
+      </AbstractStep>
+      <AbstractStep z:Id="i5" i:type="ExecutedStep">
+        <Childs>
+          <AbstractStep z:Id="i6" i:type="ExecutedStep">
+            <Childs>
+              <AbstractStep z:Id="i7" i:type="ExecutedStep">
+                <Childs />
+                <Id>48d1e2a2-9e0a-4db6-bc30-9706a0fa4993</Id>
+                <Parent z:Ref="i6" />
+                <PropertyValues>
+                  <PropertyValue z:Id="i8">
+                    <PropertyName>Value</PropertyName>
+                    <_dataType>Expression</_dataType>
+                    <_expression>TransactionNumber+1</_expression>
+                    <_screenShotBase64 i:nil="true" />
+                    <_value i:nil="true" />
+                    <_xpathSettings xmlns:d11p1="http://schemas.datacontract.org/2004/07/BR.XPath" i:nil="true" />
+                  </PropertyValue>
+                  <PropertyValue z:Id="i9">
+                    <PropertyName>To</PropertyName>
+                    <_dataType>Expression</_dataType>
+                    <_expression>TransactionNumber</_expression>
+                    <_screenShotBase64 i:nil="true" />
+                    <_value i:nil="true" />
+                    <_xpathSettings xmlns:d11p1="http://schemas.datacontract.org/2004/07/BR.XPath" i:nil="true" />
+                  </PropertyValue>
+                </PropertyValues>
+                <SelectedOptionId i:nil="true" />
+                <AutoCloseMode>None</AutoCloseMode>
+                <EnableStatus>true</EnableStatus>
+                <ExceptionHandlingMode>Default</ExceptionHandlingMode>
+                <RetryCount>-1</RetryCount>
+                <Text>Si no existen errores en el tratamiento de los datos, pase a la siguiente transacción</Text>
+                <_activityFullName>BR.Core.Base.Assign</_activityFullName>
+              </AbstractStep>
+              <AbstractStep z:Id="i10" i:type="ExecutedStep">
+                <Childs />
+                <Id>b958e992-79cd-493f-a586-9a35db52051a</Id>
+                <Parent z:Ref="i6" />
+                <PropertyValues>
+                  <PropertyValue z:Id="i11">
+                    <PropertyName>Value</PropertyName>
+                    <_dataType>Expression</_dataType>
+                    <_expression>0</_expression>
+                    <_screenShotBase64 i:nil="true" />
+                    <_value i:nil="true" />
+                    <_xpathSettings xmlns:d11p1="http://schemas.datacontract.org/2004/07/BR.XPath" i:nil="true" />
+                  </PropertyValue>
+                  <PropertyValue z:Id="i12">
+                    <PropertyName>To</PropertyName>
+                    <_dataType>Expression</_dataType>
+                    <_expression>RetryNumber</_expression>
+                    <_screenShotBase64 i:nil="true" />
+                    <_value i:nil="true" />
+                    <_xpathSettings xmlns:d11p1="http://schemas.datacontract.org/2004/07/BR.XPath" i:nil="true" />
+                  </PropertyValue>
+                </PropertyValues>
+                <SelectedOptionId i:nil="true" />
+                <AutoCloseMode>None</AutoCloseMode>
+                <EnableStatus>true</EnableStatus>
+                <ExceptionHandlingMode>Default</ExceptionHandlingMode>
+                <RetryCount>-1</RetryCount>
+                <Text>Reiniciar RetryNumber</Text>
+                <_activityFullName>BR.Core.Base.Assign</_activityFullName>
+              </AbstractStep>
+              <AbstractStep z:Id="i13" i:type="ExecutedStep">
+                <Childs />
+                <Id>f910c5d8-fc93-4cec-bad1-7ec6d6392677</Id>
+                <Parent z:Ref="i6" />
+                <PropertyValues>
+                  <PropertyValue z:Id="i14">
+                    <PropertyName>ID</PropertyName>
+                    <_dataType>Expression</_dataType>
+                    <_expression>TransactionItem["ID"].ToString()</_expression>
+                    <_screenShotBase64 i:nil="true" />
+                    <_value i:nil="true" />
+                    <_xpathSettings xmlns:d11p1="http://schemas.datacontract.org/2004/07/BR.XPath" i:nil="true" />
+                  </PropertyValue>
+                </PropertyValues>
+                <SelectedOptionId i:nil="true" />
+                <AutoCloseMode>None</AutoCloseMode>
+                <EnableStatus>true</EnableStatus>
+                <ExceptionHandlingMode>Default</ExceptionHandlingMode>
+                <RetryCount>-1</RetryCount>
+                <Text>Transfiere un elemento de la cola al estado TRUE</Text>
+                <_activityFullName>Activities.Queues.ConfirmElement</_activityFullName>
+              </AbstractStep>
+              <AbstractStep z:Id="i15" i:type="ExecutedStep">
+                <Childs />
+                <Id>953d3d4c-f3fe-4c72-a805-ddf7d22b89d8</Id>
+                <Parent z:Ref="i6" />
+                <PropertyValues>
+                  <PropertyValue z:Id="i16">
+                    <PropertyName>Text</PropertyName>
+                    <_dataType>Expression</_dataType>
+                    <_expression>"Transacción procesada con éxito."</_expression>
+                    <_screenShotBase64 i:nil="true" />
+                    <_value i:nil="true" />
+                    <_xpathSettings xmlns:d11p1="http://schemas.datacontract.org/2004/07/BR.XPath" i:nil="true" />
+                  </PropertyValue>
+                </PropertyValues>
+                <SelectedOptionId i:nil="true" />
+                <AutoCloseMode>None</AutoCloseMode>
+                <EnableStatus>true</EnableStatus>
+                <ExceptionHandlingMode>Default</ExceptionHandlingMode>
+                <RetryCount>-1</RetryCount>
+                <Text>Escriba un log "Transacción procesada con éxito".</Text>
+                <_activityFullName>BR.Core.Base.WriteLog</_activityFullName>
+              </AbstractStep>
+            </Childs>
+            <Id>2461b011-828f-41f7-94c8-a26bb651ac15</Id>
+            <Parent z:Ref="i5" />
+            <PropertyValues />
+            <SelectedOptionId i:nil="true" />
+            <AutoCloseMode>None</AutoCloseMode>
+            <EnableStatus>true</EnableStatus>
+            <ExceptionHandlingMode>Default</ExceptionHandlingMode>
+            <RetryCount>-1</RetryCount>
+            <Text></Text>
+            <_activityFullName>BR.Core.Base.IfTrue</_activityFullName>
+          </AbstractStep>
+          <AbstractStep z:Id="i17" i:type="ExecutedStep">
+            <Childs>
+              <AbstractStep z:Id="i18" i:type="ExecutedStep">
+                <Childs />
+                <Id>e9974f7a-52bd-4a40-882e-44c38b38d6b1</Id>
+                <Parent z:Ref="i17" />
+                <PropertyValues>
+                  <PropertyValue z:Id="i19">
+                    <PropertyName>Value</PropertyName>
+                    <_dataType>Expression</_dataType>
+                    <_expression>TransactionNumber+1</_expression>
+                    <_screenShotBase64 i:nil="true" />
+                    <_value i:nil="true" />
+                    <_xpathSettings xmlns:d11p1="http://schemas.datacontract.org/2004/07/BR.XPath" i:nil="true" />
+                  </PropertyValue>
+                  <PropertyValue z:Id="i20">
+                    <PropertyName>To</PropertyName>
+                    <_dataType>Expression</_dataType>
+                    <_expression>TransactionNumber</_expression>
+                    <_screenShotBase64 i:nil="true" />
+                    <_value i:nil="true" />
+                    <_xpathSettings xmlns:d11p1="http://schemas.datacontract.org/2004/07/BR.XPath" i:nil="true" />
+                  </PropertyValue>
+                </PropertyValues>
+                <SelectedOptionId i:nil="true" />
+                <AutoCloseMode>None</AutoCloseMode>
+                <EnableStatus>true</EnableStatus>
+                <ExceptionHandlingMode>Default</ExceptionHandlingMode>
+                <RetryCount>-1</RetryCount>
+                <Text>En caso de error comercial en el tratamiento de datos, pase a la siguiente transacción</Text>
+                <_activityFullName>BR.Core.Base.Assign</_activityFullName>
+              </AbstractStep>
+              <AbstractStep z:Id="i21" i:type="ExecutedStep">
+                <Childs />
+                <Id>68dcdac6-c5e9-43bc-9492-0cba324348f9</Id>
+                <Parent z:Ref="i17" />
+                <PropertyValues>
+                  <PropertyValue z:Id="i22">
+                    <PropertyName>Value</PropertyName>
+                    <_dataType>Expression</_dataType>
+                    <_expression>0</_expression>
+                    <_screenShotBase64 i:nil="true" />
+                    <_value i:nil="true" />
+                    <_xpathSettings xmlns:d11p1="http://schemas.datacontract.org/2004/07/BR.XPath" i:nil="true" />
+                  </PropertyValue>
+                  <PropertyValue z:Id="i23">
+                    <PropertyName>To</PropertyName>
+                    <_dataType>Expression</_dataType>
+                    <_expression>RetryNumber</_expression>
+                    <_screenShotBase64 i:nil="true" />
+                    <_value i:nil="true" />
+                    <_xpathSettings xmlns:d11p1="http://schemas.datacontract.org/2004/07/BR.XPath" i:nil="true" />
+                  </PropertyValue>
+                </PropertyValues>
+                <SelectedOptionId i:nil="true" />
+                <AutoCloseMode>None</AutoCloseMode>
+                <EnableStatus>true</EnableStatus>
+                <ExceptionHandlingMode>Default</ExceptionHandlingMode>
+                <RetryCount>-1</RetryCount>
+                <Text>Reiniciar RetryNumber</Text>
+                <_activityFullName>BR.Core.Base.Assign</_activityFullName>
+              </AbstractStep>
+              <AbstractStep z:Id="i24" i:type="ExecutedStep">
+                <Childs />
+                <Id>0678a220-bc1c-4b9b-8003-d99835537217</Id>
+                <Parent z:Ref="i17" />
+                <PropertyValues>
+                  <PropertyValue z:Id="i25">
+                    <PropertyName>ID</PropertyName>
+                    <_dataType>Expression</_dataType>
+                    <_expression>TransactionItem["ID"].ToString()</_expression>
+                    <_screenShotBase64 i:nil="true" />
+                    <_value i:nil="true" />
+                    <_xpathSettings xmlns:d11p1="http://schemas.datacontract.org/2004/07/BR.XPath" i:nil="true" />
+                  </PropertyValue>
+                  <PropertyValue z:Id="i26">
+                    <PropertyName>Status</PropertyName>
+                    <_dataType>Value</_dataType>
+                    <_expression i:nil="true" />
+                    <_screenShotBase64 i:nil="true" />
+                    <_value xmlns:d11p1="http://www.w3.org/2001/XMLSchema" i:type="d11p1:boolean">false</_value>
+                    <_xpathSettings xmlns:d11p1="http://schemas.datacontract.org/2004/07/BR.XPath" i:nil="true" />
+                  </PropertyValue>
+                  <PropertyValue z:Id="i27">
+                    <PropertyName>ErrorComment</PropertyName>
+                    <_dataType>Expression</_dataType>
+                    <_expression>BusinessException.Message</_expression>
+                    <_screenShotBase64 i:nil="true" />
+                    <_value i:nil="true" />
+                    <_xpathSettings xmlns:d11p1="http://schemas.datacontract.org/2004/07/BR.XPath" i:nil="true" />
+                  </PropertyValue>
+                  <PropertyValue z:Id="i28">
+                    <PropertyName>QueueItemErrorType</PropertyName>
+                    <_dataType>Value</_dataType>
+                    <_expression i:nil="true" />
+                    <_screenShotBase64 i:nil="true" />
+                    <_value xmlns:d11p1="http://schemas.datacontract.org/2004/07/Activities.Queues.Enums" i:type="d11p1:QueueItemErrorType">Business</_value>
+                    <_xpathSettings xmlns:d11p1="http://schemas.datacontract.org/2004/07/BR.XPath" i:nil="true" />
+                  </PropertyValue>
+                </PropertyValues>
+                <SelectedOptionId i:nil="true" />
+                <AutoCloseMode>None</AutoCloseMode>
+                <EnableStatus>true</EnableStatus>
+                <ExceptionHandlingMode>Default</ExceptionHandlingMode>
+                <RetryCount>-1</RetryCount>
+                <Text>Cambio de un elemento de la cola al estado FALSO - un error comercial</Text>
+                <_activityFullName>Activities.Queues.ConfirmElement</_activityFullName>
+              </AbstractStep>
+              <AbstractStep z:Id="i29" i:type="ExecutedStep">
+                <Childs />
+                <Id>189c9f31-bfc9-4d1b-ace6-8ee9a07138e6</Id>
+                <Parent z:Ref="i17" />
+                <PropertyValues>
+                  <PropertyValue z:Id="i30">
+                    <PropertyName>Text</PropertyName>
+                    <_dataType>Expression</_dataType>
+                    <_expression>"Transacción con error de negocio."</_expression>
+                    <_screenShotBase64 i:nil="true" />
+                    <_value i:nil="true" />
+                    <_xpathSettings xmlns:d11p1="http://schemas.datacontract.org/2004/07/BR.XPath" i:nil="true" />
+                  </PropertyValue>
+                </PropertyValues>
+                <SelectedOptionId i:nil="true" />
+                <AutoCloseMode>None</AutoCloseMode>
+                <EnableStatus>true</EnableStatus>
+                <ExceptionHandlingMode>Default</ExceptionHandlingMode>
+                <RetryCount>-1</RetryCount>
+                <Text>Escribe un log "Transacción con un error de negocio".</Text>
+                <_activityFullName>BR.Core.Base.WriteLog</_activityFullName>
+              </AbstractStep>
+              <AbstractStep z:Id="i31" i:type="ExecutedStep">
+                <Childs />
+                <Id>38dd93ef-c549-4e16-ad2e-7f6003753721</Id>
+                <Parent z:Ref="i17" />
+                <PropertyValues>
+                  <PropertyValue z:Id="i32">
+                    <PropertyName>Value</PropertyName>
+                    <_dataType>Expression</_dataType>
+                    <_expression>default(PIX.Core.Exceptions.BusinessRuleException)</_expression>
+                    <_screenShotBase64 i:nil="true" />
+                    <_value i:nil="true" />
+                    <_xpathSettings xmlns:d11p1="http://schemas.datacontract.org/2004/07/BR.XPath" i:nil="true" />
+                  </PropertyValue>
+                  <PropertyValue z:Id="i33">
+                    <PropertyName>To</PropertyName>
+                    <_dataType>Expression</_dataType>
+                    <_expression>BusinessException</_expression>
+                    <_screenShotBase64 i:nil="true" />
+                    <_value i:nil="true" />
+                    <_xpathSettings xmlns:d11p1="http://schemas.datacontract.org/2004/07/BR.XPath" i:nil="true" />
+                  </PropertyValue>
+                </PropertyValues>
+                <SelectedOptionId i:nil="true" />
+                <AutoCloseMode>None</AutoCloseMode>
+                <EnableStatus>true</EnableStatus>
+                <ExceptionHandlingMode>Default</ExceptionHandlingMode>
+                <RetryCount>-1</RetryCount>
+                <Text>Restablecer BusinessException</Text>
+                <_activityFullName>BR.Core.Base.Assign</_activityFullName>
+              </AbstractStep>
+            </Childs>
+            <Id>9e1b19db-eb21-4d65-9128-bce8122a59d5</Id>
+            <Parent z:Ref="i5" />
+            <PropertyValues>
+              <PropertyValue z:Id="i34">
+                <PropertyName>Condition</PropertyName>
+                <_dataType>Expression</_dataType>
+                <_expression>!(BusinessException is null)</_expression>
+                <_screenShotBase64 i:nil="true" />
+                <_value i:nil="true" />
+                <_xpathSettings xmlns:d9p1="http://schemas.datacontract.org/2004/07/BR.XPath" i:nil="true" />
+              </PropertyValue>
+            </PropertyValues>
+            <SelectedOptionId i:nil="true" />
+            <AutoCloseMode>None</AutoCloseMode>
+            <EnableStatus>true</EnableStatus>
+            <ExceptionHandlingMode>Default</ExceptionHandlingMode>
+            <RetryCount>-1</RetryCount>
+            <Text></Text>
+            <_activityFullName>BR.Core.Base.ElseIf</_activityFullName>
+          </AbstractStep>
+          <AbstractStep z:Id="i35" i:type="ExecutedStep">
+            <Childs>
+              <AbstractStep z:Id="i36" i:type="ExecutedStep">
+                <Childs />
+                <Id>ee1d6b42-b6fe-4011-9470-5e37252eb18d</Id>
+                <Parent z:Ref="i35" />
+                <PropertyValues>
+                  <PropertyValue z:Id="i37">
+                    <PropertyName>FilePath</PropertyName>
+                    <_dataType>Expression</_dataType>
+                    <_expression>@"Framework\TakeScreenshot.pix"</_expression>
+                    <_screenShotBase64 i:nil="true" />
+                    <_value i:nil="true" />
+                    <_xpathSettings xmlns:d11p1="http://schemas.datacontract.org/2004/07/BR.XPath" i:nil="true" />
+                  </PropertyValue>
+                  <PropertyValue z:Id="i38">
+                    <PropertyName>Parameters</PropertyName>
+                    <_dataType>Value</_dataType>
+                    <_expression i:nil="true" />
+                    <_screenShotBase64 i:nil="true" />
+                    <_value xmlns:d11p1="http://schemas.datacontract.org/2004/07/BR.Core" i:type="d11p1:ArrayOfArgumentItem">
+                      <d11p1:ArgumentItem z:Id="i39">
+                        <d11p1:ArgumentName>Directory</d11p1:ArgumentName>
+                        <d11p1:Expression>Config["ExScreenshotsDirectoryPath"].ToString()</d11p1:Expression>
+                        <d11p1:Type>System.String</d11p1:Type>
+                      </d11p1:ArgumentItem>
+                      <d11p1:ArgumentItem z:Id="i40">
+                        <d11p1:ArgumentName>FilePath</d11p1:ArgumentName>
+                        <d11p1:Expression>""</d11p1:Expression>
+                        <d11p1:Type>System.String</d11p1:Type>
+                      </d11p1:ArgumentItem>
+                    </_value>
+                    <_xpathSettings xmlns:d11p1="http://schemas.datacontract.org/2004/07/BR.XPath" i:nil="true" />
+                  </PropertyValue>
+                </PropertyValues>
+                <SelectedOptionId i:nil="true" />
+                <AutoCloseMode>None</AutoCloseMode>
+                <EnableStatus>true</EnableStatus>
+                <ExceptionHandlingMode>Default</ExceptionHandlingMode>
+                <RetryCount>-1</RetryCount>
+                <Text></Text>
+                <_activityFullName>BR.Core.Base.ExecuteScript</_activityFullName>
+              </AbstractStep>
+              <AbstractStep z:Id="i41" i:type="ExecutedStep">
+                <Childs>
+                  <AbstractStep z:Id="i42" i:type="ExecutedStep">
+                    <Childs>
+                      <AbstractStep z:Id="i43" i:type="ExecutedStep">
+                        <Childs />
+                        <Id>34061d97-6ad1-45bd-a028-31e9d3030c1c</Id>
+                        <Parent z:Ref="i42" />
+                        <PropertyValues>
+                          <PropertyValue z:Id="i44">
+                            <PropertyName>Value</PropertyName>
+                            <_dataType>Expression</_dataType>
+                            <_expression>TransactionNumber+1</_expression>
+                            <_screenShotBase64 i:nil="true" />
+                            <_value i:nil="true" />
+                            <_xpathSettings xmlns:d15p1="http://schemas.datacontract.org/2004/07/BR.XPath" i:nil="true" />
+                          </PropertyValue>
+                          <PropertyValue z:Id="i45">
+                            <PropertyName>To</PropertyName>
+                            <_dataType>Expression</_dataType>
+                            <_expression>TransactionNumber</_expression>
+                            <_screenShotBase64 i:nil="true" />
+                            <_value i:nil="true" />
+                            <_xpathSettings xmlns:d15p1="http://schemas.datacontract.org/2004/07/BR.XPath" i:nil="true" />
+                          </PropertyValue>
+                        </PropertyValues>
+                        <SelectedOptionId i:nil="true" />
+                        <AutoCloseMode>None</AutoCloseMode>
+                        <EnableStatus>true</EnableStatus>
+                        <ExceptionHandlingMode>Default</ExceptionHandlingMode>
+                        <RetryCount>-1</RetryCount>
+                        <Text>Si se alcanza el número máximo de repeticiones de tratamiento de datos al encontrarse con una excepción del sistema, se pasa a la siguiente transacción</Text>
+                        <_activityFullName>BR.Core.Base.Assign</_activityFullName>
+                      </AbstractStep>
+                      <AbstractStep z:Id="i46" i:type="ExecutedStep">
+                        <Childs />
+                        <Id>81f7dc86-e0e2-4102-bc6c-0f056fc51217</Id>
+                        <Parent z:Ref="i42" />
+                        <PropertyValues>
+                          <PropertyValue z:Id="i47">
+                            <PropertyName>Value</PropertyName>
+                            <_dataType>Expression</_dataType>
+                            <_expression>0</_expression>
+                            <_screenShotBase64 i:nil="true" />
+                            <_value i:nil="true" />
+                            <_xpathSettings xmlns:d15p1="http://schemas.datacontract.org/2004/07/BR.XPath" i:nil="true" />
+                          </PropertyValue>
+                          <PropertyValue z:Id="i48">
+                            <PropertyName>To</PropertyName>
+                            <_dataType>Expression</_dataType>
+                            <_expression>RetryNumber</_expression>
+                            <_screenShotBase64 i:nil="true" />
+                            <_value i:nil="true" />
+                            <_xpathSettings xmlns:d15p1="http://schemas.datacontract.org/2004/07/BR.XPath" i:nil="true" />
+                          </PropertyValue>
+                        </PropertyValues>
+                        <SelectedOptionId i:nil="true" />
+                        <AutoCloseMode>None</AutoCloseMode>
+                        <EnableStatus>true</EnableStatus>
+                        <ExceptionHandlingMode>Default</ExceptionHandlingMode>
+                        <RetryCount>-1</RetryCount>
+                        <Text>Reiniciar RetryNumber</Text>
+                        <_activityFullName>BR.Core.Base.Assign</_activityFullName>
+                      </AbstractStep>
+                      <AbstractStep z:Id="i49" i:type="ExecutedStep">
+                        <Childs />
+                        <Id>42d5dad9-07e7-4032-91eb-0c653ab6f37e</Id>
+                        <Parent z:Ref="i42" />
+                        <PropertyValues>
+                          <PropertyValue z:Id="i50">
+                            <PropertyName>ID</PropertyName>
+                            <_dataType>Expression</_dataType>
+                            <_expression>TransactionItem["ID"].ToString()</_expression>
+                            <_screenShotBase64 i:nil="true" />
+                            <_value i:nil="true" />
+                            <_xpathSettings xmlns:d15p1="http://schemas.datacontract.org/2004/07/BR.XPath" i:nil="true" />
+                          </PropertyValue>
+                          <PropertyValue z:Id="i51">
+                            <PropertyName>Status</PropertyName>
+                            <_dataType>Value</_dataType>
+                            <_expression i:nil="true" />
+                            <_screenShotBase64 i:nil="true" />
+                            <_value xmlns:d15p1="http://www.w3.org/2001/XMLSchema" i:type="d15p1:boolean">false</_value>
+                            <_xpathSettings xmlns:d15p1="http://schemas.datacontract.org/2004/07/BR.XPath" i:nil="true" />
+                          </PropertyValue>
+                          <PropertyValue z:Id="i52">
+                            <PropertyName>ErrorComment</PropertyName>
+                            <_dataType>Expression</_dataType>
+                            <_expression>SystemException.Message</_expression>
+                            <_screenShotBase64 i:nil="true" />
+                            <_value i:nil="true" />
+                            <_xpathSettings xmlns:d15p1="http://schemas.datacontract.org/2004/07/BR.XPath" i:nil="true" />
+                          </PropertyValue>
+                        </PropertyValues>
+                        <SelectedOptionId i:nil="true" />
+                        <AutoCloseMode>None</AutoCloseMode>
+                        <EnableStatus>true</EnableStatus>
+                        <ExceptionHandlingMode>Default</ExceptionHandlingMode>
+                        <RetryCount>-1</RetryCount>
+                        <Text>Cambio de un elemento de la cola al estado FALSE - error técnico</Text>
+                        <_activityFullName>Activities.Queues.ConfirmElement</_activityFullName>
+                      </AbstractStep>
+                    </Childs>
+                    <Id>0c55ff0f-0376-4074-a9a5-a95ea6c8a0d5</Id>
+                    <Parent z:Ref="i41" />
+                    <PropertyValues />
+                    <SelectedOptionId i:nil="true" />
+                    <AutoCloseMode>None</AutoCloseMode>
+                    <EnableStatus>true</EnableStatus>
+                    <ExceptionHandlingMode>Default</ExceptionHandlingMode>
+                    <RetryCount>-1</RetryCount>
+                    <Text></Text>
+                    <_activityFullName>BR.Core.Base.IfTrue</_activityFullName>
+                  </AbstractStep>
+                  <AbstractStep z:Id="i53" i:type="ExecutedStep">
+                    <Childs>
+                      <AbstractStep z:Id="i54" i:type="ExecutedStep">
+                        <Childs />
+                        <Id>e24a2531-19a7-4ef9-8e25-8efbfd5b28a0</Id>
+                        <Parent z:Ref="i53" />
+                        <PropertyValues>
+                          <PropertyValue z:Id="i55">
+                            <PropertyName>Value</PropertyName>
+                            <_dataType>Expression</_dataType>
+                            <_expression>RetryNumber+1</_expression>
+                            <_screenShotBase64 i:nil="true" />
+                            <_value i:nil="true" />
+                            <_xpathSettings xmlns:d15p1="http://schemas.datacontract.org/2004/07/BR.XPath" i:nil="true" />
+                          </PropertyValue>
+                          <PropertyValue z:Id="i56">
+                            <PropertyName>To</PropertyName>
+                            <_dataType>Expression</_dataType>
+                            <_expression>RetryNumber</_expression>
+                            <_screenShotBase64 i:nil="true" />
+                            <_value i:nil="true" />
+                            <_xpathSettings xmlns:d15p1="http://schemas.datacontract.org/2004/07/BR.XPath" i:nil="true" />
+                          </PropertyValue>
+                        </PropertyValues>
+                        <SelectedOptionId i:nil="true" />
+                        <AutoCloseMode>None</AutoCloseMode>
+                        <EnableStatus>true</EnableStatus>
+                        <ExceptionHandlingMode>Default</ExceptionHandlingMode>
+                        <RetryCount>-1</RetryCount>
+                        <Text>Incrementación RetryNumber</Text>
+                        <_activityFullName>BR.Core.Base.Assign</_activityFullName>
+                      </AbstractStep>
+                    </Childs>
+                    <Id>97334eed-4c13-476f-aac4-3d14e695d3f1</Id>
+                    <Parent z:Ref="i41" />
+                    <PropertyValues />
+                    <SelectedOptionId i:nil="true" />
+                    <AutoCloseMode>None</AutoCloseMode>
+                    <EnableStatus>true</EnableStatus>
+                    <ExceptionHandlingMode>Default</ExceptionHandlingMode>
+                    <RetryCount>-1</RetryCount>
+                    <Text></Text>
+                    <_activityFullName>BR.Core.Base.IfFalse</_activityFullName>
+                  </AbstractStep>
+                </Childs>
+                <Id>0b7c187d-fb03-4e13-bab5-9fc30cad96de</Id>
+                <Parent z:Ref="i35" />
+                <PropertyValues>
+                  <PropertyValue z:Id="i57">
+                    <PropertyName>Condition</PropertyName>
+                    <_dataType>Expression</_dataType>
+                    <_expression>RetryNumber &gt;= System.Int32.Parse(Config["MaxRetryNumber"].ToString())</_expression>
+                    <_screenShotBase64 i:nil="true" />
+                    <_value i:nil="true" />
+                    <_xpathSettings xmlns:d11p1="http://schemas.datacontract.org/2004/07/BR.XPath" i:nil="true" />
+                  </PropertyValue>
+                </PropertyValues>
+                <SelectedOptionId i:nil="true" />
+                <AutoCloseMode>None</AutoCloseMode>
+                <EnableStatus>true</EnableStatus>
+                <ExceptionHandlingMode>Default</ExceptionHandlingMode>
+                <RetryCount>-1</RetryCount>
+                <Text></Text>
+                <_activityFullName>BR.Core.Base.If</_activityFullName>
+              </AbstractStep>
+              <AbstractStep z:Id="i58" i:type="ExecutedStep">
+                <Childs>
+                  <AbstractStep z:Id="i59" i:type="ExecutedStep">
+                    <Childs>
+                      <AbstractStep z:Id="i60" i:type="ExecutedStep">
+                        <Childs />
+                        <Id>776b34e6-bef2-45d4-8260-4c82dda8a296</Id>
+                        <Parent z:Ref="i59" />
+                        <PropertyValues>
+                          <PropertyValue z:Id="i61">
+                            <PropertyName>FilePath</PropertyName>
+                            <_dataType>Expression</_dataType>
+                            <_expression>@"Framework\CloseApplications.pix"</_expression>
+                            <_screenShotBase64 i:nil="true" />
+                            <_value i:nil="true" />
+                            <_xpathSettings xmlns:d15p1="http://schemas.datacontract.org/2004/07/BR.XPath" i:nil="true" />
+                          </PropertyValue>
+                          <PropertyValue z:Id="i62">
+                            <PropertyName>Parameters</PropertyName>
+                            <_dataType>Value</_dataType>
+                            <_expression i:nil="true" />
+                            <_screenShotBase64 i:nil="true" />
+                            <_value xmlns:d15p1="http://schemas.datacontract.org/2004/07/BR.Core" i:type="d15p1:ArrayOfArgumentItem" />
+                            <_xpathSettings xmlns:d15p1="http://schemas.datacontract.org/2004/07/BR.XPath" i:nil="true" />
+                          </PropertyValue>
+                        </PropertyValues>
+                        <SelectedOptionId i:nil="true" />
+                        <AutoCloseMode>None</AutoCloseMode>
+                        <EnableStatus>true</EnableStatus>
+                        <ExceptionHandlingMode>Default</ExceptionHandlingMode>
+                        <RetryCount>-1</RetryCount>
+                        <Text>Ejecutar el script CloseApplications</Text>
+                        <_activityFullName>BR.Core.Base.ExecuteScript</_activityFullName>
+                      </AbstractStep>
+                    </Childs>
+                    <Id>fb8d7bb4-b2d0-4a58-a6ab-b691e7522bc7</Id>
+                    <Parent z:Ref="i58" />
+                    <PropertyValues />
+                    <SelectedOptionId i:nil="true" />
+                    <AutoCloseMode>None</AutoCloseMode>
+                    <EnableStatus>true</EnableStatus>
+                    <ExceptionHandlingMode>Default</ExceptionHandlingMode>
+                    <RetryCount>-1</RetryCount>
+                    <Text></Text>
+                    <_activityFullName>BR.Core.Base.Try</_activityFullName>
+                  </AbstractStep>
+                  <AbstractStep z:Id="i63" i:type="ExecutedStep">
+                    <Childs>
+                      <AbstractStep z:Id="i64" i:type="ExecutedStep">
+                        <Childs>
+                          <AbstractStep z:Id="i65" i:type="ExecutedStep">
+                            <Childs>
+                              <AbstractStep z:Id="i66" i:type="ExecutedStep">
+                                <Childs />
+                                <Id>7b34005d-654d-43c5-bf9e-bae42275e83a</Id>
+                                <Parent z:Ref="i65" />
+                                <PropertyValues>
+                                  <PropertyValue z:Id="i67">
+                                    <PropertyName>FilePath</PropertyName>
+                                    <_dataType>Expression</_dataType>
+                                    <_expression>@"Framework\KillApplications.pix"</_expression>
+                                    <_screenShotBase64 i:nil="true" />
+                                    <_value i:nil="true" />
+                                    <_xpathSettings xmlns:d19p1="http://schemas.datacontract.org/2004/07/BR.XPath" i:nil="true" />
+                                  </PropertyValue>
+                                </PropertyValues>
+                                <SelectedOptionId i:nil="true" />
+                                <AutoCloseMode>None</AutoCloseMode>
+                                <EnableStatus>true</EnableStatus>
+                                <ExceptionHandlingMode>Default</ExceptionHandlingMode>
+                                <RetryCount>-1</RetryCount>
+                                <Text>Ejecutar el script KillApplications</Text>
+                                <_activityFullName>BR.Core.Base.ExecuteScript</_activityFullName>
+                              </AbstractStep>
+                            </Childs>
+                            <Id>ea24441a-17a6-4c32-85d9-c675a6951330</Id>
+                            <Parent z:Ref="i64" />
+                            <PropertyValues />
+                            <SelectedOptionId i:nil="true" />
+                            <AutoCloseMode>None</AutoCloseMode>
+                            <EnableStatus>true</EnableStatus>
+                            <ExceptionHandlingMode>Default</ExceptionHandlingMode>
+                            <RetryCount>-1</RetryCount>
+                            <Text></Text>
+                            <_activityFullName>BR.Core.Base.Try</_activityFullName>
+                          </AbstractStep>
+                          <AbstractStep z:Id="i68" i:type="ExecutedStep">
+                            <Childs />
+                            <Id>a74e9e29-6cdb-4a26-b62c-0fc54116345b</Id>
+                            <Parent z:Ref="i64" />
+                            <PropertyValues />
+                            <SelectedOptionId i:nil="true" />
+                            <AutoCloseMode>None</AutoCloseMode>
+                            <EnableStatus>true</EnableStatus>
+                            <ExceptionHandlingMode>Default</ExceptionHandlingMode>
+                            <RetryCount>-1</RetryCount>
+                            <Text></Text>
+                            <_activityFullName>BR.Core.Base.Catch</_activityFullName>
+                          </AbstractStep>
+                        </Childs>
+                        <Id>bcd77e24-bde5-473e-bd2f-c5b09c842775</Id>
+                        <Parent z:Ref="i63" />
+                        <PropertyValues />
+                        <SelectedOptionId i:nil="true" />
+                        <AutoCloseMode>None</AutoCloseMode>
+                        <EnableStatus>true</EnableStatus>
+                        <ExceptionHandlingMode>Default</ExceptionHandlingMode>
+                        <RetryCount>-1</RetryCount>
+                        <Text></Text>
+                        <_activityFullName>BR.Core.Base.TryCatch</_activityFullName>
+                      </AbstractStep>
+                    </Childs>
+                    <Id>7299b1d7-efd6-43d2-8a51-d08df718ab41</Id>
+                    <Parent z:Ref="i58" />
+                    <PropertyValues />
+                    <SelectedOptionId i:nil="true" />
+                    <AutoCloseMode>None</AutoCloseMode>
+                    <EnableStatus>true</EnableStatus>
+                    <ExceptionHandlingMode>Default</ExceptionHandlingMode>
+                    <RetryCount>-1</RetryCount>
+                    <Text></Text>
+                    <_activityFullName>BR.Core.Base.Catch</_activityFullName>
+                  </AbstractStep>
+                </Childs>
+                <Id>227888e2-9955-4b68-8717-17ee0db4df4e</Id>
+                <Parent z:Ref="i35" />
+                <PropertyValues />
+                <SelectedOptionId i:nil="true" />
+                <AutoCloseMode>None</AutoCloseMode>
+                <EnableStatus>true</EnableStatus>
+                <ExceptionHandlingMode>Default</ExceptionHandlingMode>
+                <RetryCount>-1</RetryCount>
+                <Text></Text>
+                <_activityFullName>BR.Core.Base.TryCatch</_activityFullName>
+              </AbstractStep>
+              <AbstractStep z:Id="i69" i:type="ExecutedStep">
+                <Childs />
+                <Id>26400fc1-2bdb-4aed-87a1-896b4a15dc30</Id>
+                <Parent z:Ref="i35" />
+                <PropertyValues>
+                  <PropertyValue z:Id="i70">
+                    <PropertyName>Text</PropertyName>
+                    <_dataType>Expression</_dataType>
+                    <_expression>"Transaction with a technical error."</_expression>
+                    <_screenShotBase64 i:nil="true" />
+                    <_value i:nil="true" />
+                    <_xpathSettings xmlns:d11p1="http://schemas.datacontract.org/2004/07/BR.XPath" i:nil="true" />
+                  </PropertyValue>
+                </PropertyValues>
+                <SelectedOptionId i:nil="true" />
+                <AutoCloseMode>None</AutoCloseMode>
+                <EnableStatus>true</EnableStatus>
+                <ExceptionHandlingMode>Default</ExceptionHandlingMode>
+                <RetryCount>-1</RetryCount>
+                <Text>Escribe un log "Transacción con error técnico".</Text>
+                <_activityFullName>BR.Core.Base.WriteLog</_activityFullName>
+              </AbstractStep>
+              <AbstractStep z:Id="i71" i:type="ExecutedStep">
+                <Childs />
+                <Id>cd642290-a458-4cec-96e7-a5ee4640f3c5</Id>
+                <Parent z:Ref="i35" />
+                <PropertyValues>
+                  <PropertyValue z:Id="i72">
+                    <PropertyName>Value</PropertyName>
+                    <_dataType>Expression</_dataType>
+                    <_expression>default(System.Exception)</_expression>
+                    <_screenShotBase64 i:nil="true" />
+                    <_value i:nil="true" />
+                    <_xpathSettings xmlns:d11p1="http://schemas.datacontract.org/2004/07/BR.XPath" i:nil="true" />
+                  </PropertyValue>
+                  <PropertyValue z:Id="i73">
+                    <PropertyName>To</PropertyName>
+                    <_dataType>Expression</_dataType>
+                    <_expression>SystemException</_expression>
+                    <_screenShotBase64 i:nil="true" />
+                    <_value i:nil="true" />
+                    <_xpathSettings xmlns:d11p1="http://schemas.datacontract.org/2004/07/BR.XPath" i:nil="true" />
+                  </PropertyValue>
+                </PropertyValues>
+                <SelectedOptionId i:nil="true" />
+                <AutoCloseMode>None</AutoCloseMode>
+                <EnableStatus>true</EnableStatus>
+                <ExceptionHandlingMode>Default</ExceptionHandlingMode>
+                <RetryCount>-1</RetryCount>
+                <Text>Reiniciar SystemException</Text>
+                <_activityFullName>BR.Core.Base.Assign</_activityFullName>
+              </AbstractStep>
+            </Childs>
+            <Id>d7137845-b1f5-4fee-be67-2edb88d90da5</Id>
+            <Parent z:Ref="i5" />
+            <PropertyValues />
+            <SelectedOptionId i:nil="true" />
+            <AutoCloseMode>None</AutoCloseMode>
+            <EnableStatus>true</EnableStatus>
+            <ExceptionHandlingMode>Default</ExceptionHandlingMode>
+            <RetryCount>-1</RetryCount>
+            <Text></Text>
+            <_activityFullName>BR.Core.Base.IfFalse</_activityFullName>
+          </AbstractStep>
+        </Childs>
+        <Id>03ea218d-c67a-4682-8ddf-7a11f5db52c5</Id>
+        <Parent z:Ref="i2" />
+        <PropertyValues>
+          <PropertyValue z:Id="i74">
+            <PropertyName>Condition</PropertyName>
+            <_dataType>Expression</_dataType>
+            <_expression>SystemException is null &amp; BusinessException is null</_expression>
+            <_screenShotBase64 i:nil="true" />
+            <_value i:nil="true" />
+            <_xpathSettings xmlns:d7p1="http://schemas.datacontract.org/2004/07/BR.XPath" i:nil="true" />
+          </PropertyValue>
+        </PropertyValues>
+        <SelectedOptionId i:nil="true" />
+        <AutoCloseMode>None</AutoCloseMode>
+        <EnableStatus>true</EnableStatus>
+        <ExceptionHandlingMode>Default</ExceptionHandlingMode>
+        <RetryCount>-1</RetryCount>
+        <Text></Text>
+        <_activityFullName>BR.Core.Base.If</_activityFullName>
+      </AbstractStep>
+      <AbstractStep z:Id="i75" i:type="ExecutedStep">
+        <Childs />
+        <Id>ba448689-6b1b-4521-a78f-06ae33a88f6e</Id>
+        <Parent z:Ref="i2" />
+        <PropertyValues>
+          <PropertyValue z:Id="i76">
+            <PropertyName>Text</PropertyName>
+            <_dataType>Expression</_dataType>
+            <_expression>"Finalización del trabajo con el estado de la transacción."</_expression>
+            <_screenShotBase64 i:nil="true" />
+            <_value i:nil="true" />
+            <_xpathSettings xmlns:d7p1="http://schemas.datacontract.org/2004/07/BR.XPath" i:nil="true" />
+          </PropertyValue>
+        </PropertyValues>
+        <SelectedOptionId i:nil="true" />
+        <AutoCloseMode>None</AutoCloseMode>
+        <EnableStatus>true</EnableStatus>
+        <ExceptionHandlingMode>Default</ExceptionHandlingMode>
+        <RetryCount>-1</RetryCount>
+        <Text>Escriba el registro " Fin del estado de la transacción ".</Text>
+        <_activityFullName>BR.Core.Base.WriteLog</_activityFullName>
+      </AbstractStep>
+    </Childs>
+    <Id>737f162b-de05-41f0-8605-1e5f6554546e</Id>
+    <Parent i:nil="true" />
+    <PropertyValues />
+    <SelectedOptionId i:nil="true" />
+    <AutoCloseMode>None</AutoCloseMode>
+    <EnableStatus>true</EnableStatus>
+    <ExceptionHandlingMode>Default</ExceptionHandlingMode>
+    <RetryCount>-1</RetryCount>
+    <Text></Text>
+    <_activityFullName>BR.Core.Base.Container</_activityFullName>
+  </Logic>
+  <Name>SetTransactionStatus.pix</Name>
+  <Namespaces xmlns:d2p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <Params>
+    <Parameter z:Id="i77">
+      <DefaultValueExpression></DefaultValueExpression>
+      <Description></Description>
+      <Name>SystemException</Name>
+      <RunnerType>None</RunnerType>
+      <TypeString>System.Exception</TypeString>
+    </Parameter>
+    <Parameter z:Id="i78">
+      <DefaultValueExpression></DefaultValueExpression>
+      <Description></Description>
+      <Name>TransactionNumber</Name>
+      <RunnerType>None</RunnerType>
+      <TypeString>System.Int32</TypeString>
+    </Parameter>
+    <Parameter z:Id="i79">
+      <DefaultValueExpression></DefaultValueExpression>
+      <Description></Description>
+      <Name>RetryNumber</Name>
+      <RunnerType>None</RunnerType>
+      <TypeString>System.Int32</TypeString>
+    </Parameter>
+    <Parameter z:Id="i80">
+      <DefaultValueExpression></DefaultValueExpression>
+      <Description></Description>
+      <Name>Config</Name>
+      <RunnerType>None</RunnerType>
+      <TypeString>System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Object, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]</TypeString>
+    </Parameter>
+    <Parameter z:Id="i81">
+      <DefaultValueExpression></DefaultValueExpression>
+      <Description></Description>
+      <Name>TransactionItem</Name>
+      <RunnerType>None</RunnerType>
+      <TypeString>System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Object, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]</TypeString>
+    </Parameter>
+    <Parameter z:Id="i82">
+      <DefaultValueExpression></DefaultValueExpression>
+      <Description></Description>
+      <Name>BusinessException</Name>
+      <RunnerType>None</RunnerType>
+      <TypeString>PIX.Core.Exceptions.BusinessRuleException</TypeString>
+    </Parameter>
+  </Params>
+  <PlatformVersion xmlns:d2p1="http://schemas.datacontract.org/2004/07/System">
+    <d2p1:_Build>4</d2p1:_Build>
+    <d2p1:_Major>2</d2p1:_Major>
+    <d2p1:_Minor>27</d2p1:_Minor>
+    <d2p1:_Revision>0</d2p1:_Revision>
+  </PlatformVersion>
+  <TemplateVersion xmlns:d2p1="http://schemas.datacontract.org/2004/07/System" i:nil="true" />
+  <Variables xmlns:d2p1="http://schemas.datacontract.org/2004/07/BR.Logic.Params" />
+  <Version i:nil="true" />
+</Script>

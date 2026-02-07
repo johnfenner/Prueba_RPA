@@ -1,0 +1,234 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Script xmlns:i="http://www.w3.org/2001/XMLSchema-instance" z:Id="i1" xmlns:z="http://schemas.microsoft.com/2003/10/Serialization/" xmlns="http://schemas.datacontract.org/2004/07/BR.Logic">
+  <CompilationType>CSharp</CompilationType>
+  <Description>Новый скрипт без наполнения.</Description>
+  <Id>af006d8c-f774-4e8e-abac-4883cc5b4d20</Id>
+  <Logic z:Id="i2" i:type="ExecutedStep">
+    <Childs>
+      <AbstractStep z:Id="i3" i:type="ExecutedStep">
+        <Childs />
+        <Id>147096b5-d322-4be3-81f6-40bbc9699d58</Id>
+        <Parent z:Ref="i2" />
+        <PropertyValues>
+          <PropertyValue z:Id="i4">
+            <PropertyName>Text</PropertyName>
+            <_dataType>Expression</_dataType>
+            <_expression>"Comienza a inicializar el diccionario de configuración."</_expression>
+            <_screenShotBase64 i:nil="true" />
+            <_value i:nil="true" />
+            <_xpathSettings xmlns:d7p1="http://schemas.datacontract.org/2004/07/BR.XPath" i:nil="true" />
+          </PropertyValue>
+        </PropertyValues>
+        <SelectedOptionId i:nil="true" />
+        <AutoCloseMode>None</AutoCloseMode>
+        <EnableStatus>true</EnableStatus>
+        <ExceptionHandlingMode>Default</ExceptionHandlingMode>
+        <RetryCount>-1</RetryCount>
+        <Text>Se escribe el log "Comienza la inicialización del diccionario de configuración".</Text>
+        <_activityFullName>BR.Core.Base.WriteLog</_activityFullName>
+      </AbstractStep>
+      <AbstractStep z:Id="i5" i:type="CommentStep">
+        <Childs />
+        <Id>7010ddf1-6a8e-4643-9cdc-65f20741b247</Id>
+        <Parent z:Ref="i2" />
+        <PropertyValues />
+        <SelectedOptionId i:nil="true" />
+        <IsCollapsed>false</IsCollapsed>
+        <Text>Leer hoja Config de .\Data\Config.xlsx → DataTable dtConfig</Text>
+      </AbstractStep>
+      <AbstractStep z:Id="i6" i:type="ExecutedStep">
+        <Childs />
+        <Id>f2b685a9-381f-4653-a609-f5525d6ed34a</Id>
+        <Parent z:Ref="i2" />
+        <PropertyValues>
+          <PropertyValue z:Id="i7">
+            <PropertyName>Range</PropertyName>
+            <_dataType>Expression</_dataType>
+            <_expression>"A1:B18"</_expression>
+            <_screenShotBase64 i:nil="true" />
+            <_value i:nil="true" />
+            <_xpathSettings xmlns:d7p1="http://schemas.datacontract.org/2004/07/BR.XPath" i:nil="true" />
+          </PropertyValue>
+          <PropertyValue z:Id="i8">
+            <PropertyName>Result</PropertyName>
+            <_dataType>Expression</_dataType>
+            <_expression>dtConfig</_expression>
+            <_screenShotBase64 i:nil="true" />
+            <_value i:nil="true" />
+            <_xpathSettings xmlns:d7p1="http://schemas.datacontract.org/2004/07/BR.XPath" i:nil="true" />
+          </PropertyValue>
+          <PropertyValue z:Id="i9">
+            <PropertyName>SheetName</PropertyName>
+            <_dataType>Expression</_dataType>
+            <_expression>"Config"</_expression>
+            <_screenShotBase64 i:nil="true" />
+            <_value i:nil="true" />
+            <_xpathSettings xmlns:d7p1="http://schemas.datacontract.org/2004/07/BR.XPath" i:nil="true" />
+          </PropertyValue>
+          <PropertyValue z:Id="i10">
+            <PropertyName>FileName</PropertyName>
+            <_dataType>Expression</_dataType>
+            <_expression>FilePath</_expression>
+            <_screenShotBase64 i:nil="true" />
+            <_value i:nil="true" />
+            <_xpathSettings xmlns:d7p1="http://schemas.datacontract.org/2004/07/BR.XPath" i:nil="true" />
+          </PropertyValue>
+        </PropertyValues>
+        <SelectedOptionId i:nil="true" />
+        <AutoCloseMode>None</AutoCloseMode>
+        <EnableStatus>true</EnableStatus>
+        <ExceptionHandlingMode>Default</ExceptionHandlingMode>
+        <RetryCount>-1</RetryCount>
+        <Text>Leer Config.xlsx</Text>
+        <_activityFullName>Activities.Office.Excel.ReadRange</_activityFullName>
+      </AbstractStep>
+      <AbstractStep z:Id="i11" i:type="CommentStep">
+        <Childs />
+        <Id>a10a3636-e23a-4ea1-9c84-b47c0de28b38</Id>
+        <Parent z:Ref="i2" />
+        <PropertyValues />
+        <SelectedOptionId i:nil="true" />
+        <IsCollapsed>false</IsCollapsed>
+        <Text>Se construye el diccionario Config: apiUrl, jsonFilePath, dbPath, excelReport, formUrl, logsPath, evidencePath, onedrivePathJson, onedrivePathExcel, (tokens si aplica)</Text>
+      </AbstractStep>
+      <AbstractStep z:Id="i12" i:type="ExecutedStep">
+        <Childs />
+        <Id>efcc88d5-dec4-48e3-a254-eecc215646e0</Id>
+        <Parent z:Ref="i2" />
+        <PropertyValues>
+          <PropertyValue z:Id="i13">
+            <PropertyName>CSCode</PropertyName>
+            <_dataType>Value</_dataType>
+            <_expression i:nil="true" />
+            <_screenShotBase64 i:nil="true" />
+            <_value xmlns:d7p1="http://www.w3.org/2001/XMLSchema" i:type="d7p1:string">// 1) Asegura el diccionario
+if (Config == null)
+    Config = new System.Collections.Generic.Dictionary&lt;string, object&gt;();
+
+// 2) Si hay DataTable, detecta columnas y vuelca Key/Value
+if (dtConfig != null)
+{
+    int colKey = -1, colVal = -1;
+    for (int i = 0; i &lt; dtConfig.Columns.Count; i++)
+    {
+        var name = (dtConfig.Columns[i].ColumnName ?? "").Trim();
+        if (string.Equals(name, "Key",   System.StringComparison.OrdinalIgnoreCase)) colKey = i;
+        if (string.Equals(name, "Value", System.StringComparison.OrdinalIgnoreCase)) colVal = i;
+    }
+    if ((colKey == -1 || colVal == -1) &amp;&amp; dtConfig.Columns.Count &gt;= 2)
+    { colKey = 0; colVal = 1; }
+
+    if (colKey &gt;= 0 &amp;&amp; colVal &gt;= 0)
+    {
+        foreach (System.Data.DataRow r in dtConfig.Rows)
+        {
+            var k = (System.Convert.ToString(r[colKey]) ?? "").Trim();
+            var v =  System.Convert.ToString(r[colVal]) ?? "";
+            if (!string.IsNullOrWhiteSpace(k))
+                Config[k] = v; // guardamos como string (object)
+        }
+    }
+}
+
+// 3) Defaults mínimos para evitar nulls aguas abajo
+if (!Config.ContainsKey("apiUrl"))            Config["apiUrl"] = "https://fakestoreapi.com/products";
+if (!Config.ContainsKey("jsonFilePath"))      Config["jsonFilePath"] = @"C:\Users\Farid\OneDrive\Desktop\Prueba PIX\Data\Productos_{yyyy-MM-dd}.json";
+if (!Config.ContainsKey("dbPath"))            Config["dbPath"] = @"C:\Users\Farid\OneDrive\Desktop\Prueba PIX\Data\FakeStore.db";
+if (!Config.ContainsKey("excelReport"))       Config["excelReport"] = @"C:\Users\Farid\OneDrive\Desktop\Prueba PIX\Reportes\Reporte_{yyyy-MM-dd}.xlsx";
+if (!Config.ContainsKey("formUrl"))           Config["formUrl"] = "https://docs.google.com/forms/d/e/1FAIpQLSfVh9GZW3QZnjl23kl7-5imLFgHGp-Rqh2tvI3qK2iDNXGwIw/viewform?usp=dialog";
+if (!Config.ContainsKey("logsPath"))          Config["logsPath"] = @"C:\Users\Farid\OneDrive\Desktop\Prueba PIX\Logs";
+if (!Config.ContainsKey("evidencePath"))      Config["evidencePath"] = @"C:\Users\Farid\OneDrive\Desktop\Prueba PIX\Evidencias";
+if (!Config.ContainsKey("onedrivePathJson"))  Config["onedrivePathJson"] = "/RPA/Logs/";
+if (!Config.ContainsKey("onedrivePathExcel")) Config["onedrivePathExcel"] = "/RPA/Reportes/";
+if (!Config.ContainsKey("aadClientId"))       Config["aadClientId"] = "";
+</_value>
+            <_xpathSettings xmlns:d7p1="http://schemas.datacontract.org/2004/07/BR.XPath" i:nil="true" />
+          </PropertyValue>
+        </PropertyValues>
+        <SelectedOptionId i:nil="true" />
+        <AutoCloseMode>None</AutoCloseMode>
+        <EnableStatus>true</EnableStatus>
+        <ExceptionHandlingMode>Default</ExceptionHandlingMode>
+        <RetryCount>-1</RetryCount>
+        <Text></Text>
+        <_activityFullName>BR.Core.Base.ExecuteCSCode</_activityFullName>
+      </AbstractStep>
+      <AbstractStep z:Id="i14" i:type="ExecutedStep">
+        <Childs />
+        <Id>afb84ac5-67a5-40e9-84a3-998f6a830a55</Id>
+        <Parent z:Ref="i2" />
+        <PropertyValues>
+          <PropertyValue z:Id="i15">
+            <PropertyName>CSCode</PropertyName>
+            <_dataType>Value</_dataType>
+            <_expression i:nil="true" />
+            <_screenShotBase64 i:nil="true" />
+            <_value xmlns:d7p1="http://www.w3.org/2001/XMLSchema" i:type="d7p1:string">
+var keys = string.Join(", ", Config.Keys);
+System.Diagnostics.Debug.WriteLine("Config keys: " + keys);
+</_value>
+            <_xpathSettings xmlns:d7p1="http://schemas.datacontract.org/2004/07/BR.XPath" i:nil="true" />
+          </PropertyValue>
+        </PropertyValues>
+        <SelectedOptionId i:nil="true" />
+        <AutoCloseMode>None</AutoCloseMode>
+        <EnableStatus>true</EnableStatus>
+        <ExceptionHandlingMode>Default</ExceptionHandlingMode>
+        <RetryCount>-1</RetryCount>
+        <Text></Text>
+        <_activityFullName>BR.Core.Base.ExecuteCSCode</_activityFullName>
+      </AbstractStep>
+    </Childs>
+    <Id>33f4ee90-5d6d-4ed7-909e-f1eead88c3dc</Id>
+    <Parent i:nil="true" />
+    <PropertyValues />
+    <SelectedOptionId i:nil="true" />
+    <AutoCloseMode>None</AutoCloseMode>
+    <EnableStatus>true</EnableStatus>
+    <ExceptionHandlingMode>Default</ExceptionHandlingMode>
+    <RetryCount>-1</RetryCount>
+    <Text></Text>
+    <_activityFullName>BR.Core.Base.Container</_activityFullName>
+  </Logic>
+  <Name>ReadConfig.pix</Name>
+  <Namespaces xmlns:d2p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <Params>
+    <Parameter z:Id="i16">
+      <DefaultValueExpression>@"Data\Config.xlsx"</DefaultValueExpression>
+      <Description></Description>
+      <Name>FilePath</Name>
+      <RunnerType>None</RunnerType>
+      <TypeString>System.String</TypeString>
+    </Parameter>
+    <Parameter z:Id="i17">
+      <DefaultValueExpression>"Settings,Constants"</DefaultValueExpression>
+      <Description></Description>
+      <Name>SheetNames</Name>
+      <RunnerType>None</RunnerType>
+      <TypeString>System.String</TypeString>
+    </Parameter>
+    <Parameter z:Id="i18">
+      <DefaultValueExpression></DefaultValueExpression>
+      <Description></Description>
+      <Name>Config</Name>
+      <RunnerType>None</RunnerType>
+      <TypeString>System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Object, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]</TypeString>
+    </Parameter>
+  </Params>
+  <PlatformVersion xmlns:d2p1="http://schemas.datacontract.org/2004/07/System">
+    <d2p1:_Build>4</d2p1:_Build>
+    <d2p1:_Major>2</d2p1:_Major>
+    <d2p1:_Minor>27</d2p1:_Minor>
+    <d2p1:_Revision>0</d2p1:_Revision>
+  </PlatformVersion>
+  <TemplateVersion xmlns:d2p1="http://schemas.datacontract.org/2004/07/System" i:nil="true" />
+  <Variables xmlns:d2p1="http://schemas.datacontract.org/2004/07/BR.Logic.Params">
+    <d2p1:Variable z:Id="i19">
+      <d2p1:DefaultValueExpression></d2p1:DefaultValueExpression>
+      <d2p1:Description></d2p1:Description>
+      <d2p1:Name>dtConfig</d2p1:Name>
+      <d2p1:TypeString>System.Data.DataTable</d2p1:TypeString>
+    </d2p1:Variable>
+  </Variables>
+  <Version i:nil="true" />
+</Script>
