@@ -235,11 +235,8 @@ excelPathToday = Convert.ToString(Config["excelReport"])
   → `InitApplications.pix`: *CREATE TABLE IF NOT EXISTS Productos*.  
   → `ProcessTransactionItem.pix`: *COUNT* + *INSERT (?,?,?,?,?, datetime('now'))*.
 
-- **Reporte Excel (local + OneDrive)**  
+- **Reporte Excel**  
   → `ProcessTransactionItem.pix`: **KPIs** + **Resumen por categoría** en `.\Data\Plantilla.xlsx`; **Copiar** a `excelPathToday`; *(opcional) PUT Graph (Excel)*.
-
-- **Formulario + evidencia**  
-  → `ProcessTransactionItem.pix` (o subflujo web): **Chrome**, **llenar campos**, **adjuntar `excelPathToday`**, **enviar**, **captura** a `Evidencias\formulario_confirmacion.png`.
 
 ---
 
